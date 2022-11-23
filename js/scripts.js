@@ -6,15 +6,22 @@ let pokemonRepository = (function(){
     {name: "Lickitung", height: 12, types: ["saliva", "tingle"]}
     ];
 
+    //bonus task
+    function addv(pokemon){
+        var aKeys = JSON.stringify(Object.keys(pokemon));
+        var bKeys = JSON.stringify(Object.keys(pokemonList[0]));
+        if (typeof pokemon === "object" && aKeys==bKeys){
+            return true;
+        }else{
+            alert("Pokemon must be an object");
+        }
+    }
+
     function add(pokemon){
-        //bonus task
-        if(typeof pokemon === "object"){
-            if(Object.keys(pokemon) === Object.keys(pokemonList[0])){
-                alert("New pokemon!");
-                pokemonList.push(pokemon);
-            } else{
-                alert("Pokemon not found");
-            }
+        if (addv(pokemon)){
+            pokemonList.push(pokemon);
+        }else{
+            alert("Pokemon must be an object!");
         }
     }
 
