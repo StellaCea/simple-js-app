@@ -29,18 +29,41 @@ let pokemonRepository = (function(){
         return pokemonList;
     }
 
+    function addListItem(pokemon){
+        let pokemonList = document.querySelector(".pokemon-list");
+        let listpokemon = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemon.name;
+        button.classList.add("button-class");
+        listpokemon.appendChild(button);
+        pokemonList.appendChild(listpokemon);
+        button.addEventListener("click", function (event){
+            showDetails(pokemon);
+
+        });
+    }
+
+    function showDetails(pokemon){
+        console.log(pokemon);
+    }
+
+
     return{
         add:add,
-        getAll:getAll
+        getAll:getAll,
+        addListItem:addListItem
     };
 
 })();
 pokemonRepository.add({name:"Hopip", height: 4, types:["grass", "flying"]});
+
+console.log(pokemonRepository.getAll());
+
 pokemonRepository.getAll().forEach(function(pokemon){
-    if(pokemon.height > 10){
-        document.write(pokemon.name + " (height: " + pokemon.height + ") - Wow, that's big! <br>");
-    }
-    else{
-        document.write(pokemon.name + " (height: " + pokemon.height + ") <br>");
-    }
+    pokemonRepository.addListItem(pokemon); 
+    
+
+
 });
+
+
