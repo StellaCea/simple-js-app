@@ -1,27 +1,16 @@
 let pokemonRepository = (function(){
-    let pokemonList = [
-    {name: "Charmander", height: 6, types: ["rock", "fire"]},
-    {name: "Rattata", height: 3, types: ["food", "speed"]},
-    {name: "Persian", height: 10, types: ["talk", "haughty"]},
-    {name: "Lickitung", height: 12, types: ["saliva", "tingle"]}
-    ];
-
-    //bonus task
-    function addv(pokemon){
-        var aKeys = JSON.stringify(Object.keys(pokemon));
-        var bKeys = JSON.stringify(Object.keys(pokemonList[0]));
-        if (typeof pokemon === "object" && aKeys==bKeys){
-            return true;
-        }else{
-            alert("Pokemon must be an object");
-        }
-    }
+    let pokemonList = [];
+    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
     function add(pokemon){
-        if (addv(pokemon)){
+        if(
+            typeof pokemon === "object" &&
+            "name" in pokemon &&
+            "detailsUrl" in pokemon
+        ){
             pokemonList.push(pokemon);
         }else{
-            alert("Pokemon must be an object!");
+            console.log("Pokemon is not cirrect");
         }
     }
 
@@ -43,27 +32,61 @@ let pokemonRepository = (function(){
         });
     }
 
+    function loadDetails(item){
+        let url = item.detailsUrl;
+        return fetch(url).then(function(response){
+            return response.json();
+        }).then (function(details){
+            //add details to the item
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function(e){
+            console.error(e);
+        });
+    }
+
+    //get the complete list of pokemons from the url
+    function loadList() {
+        return fetch (apiUrl).then(function(response){
+            return response.json();
+        }).then (function(json){
+            json.results.forEach (function(item){
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                };
+                add(pokemon); 
+                console.log(pokemon);
+            })
+        }).catch (function(e){
+            console.error(e);
+        })
+    }
+
     function showDetails(pokemon){
-        console.log(pokemon);
+        loadDetails(pokemon).then(function(){
+            console.log(pokemon);
+        });
     }
 
 
     return{
         add:add,
         getAll:getAll,
-        addListItem:addListItem
+        addListItem:addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails,
+        showDetails: showDetails
     };
-
 })();
-pokemonRepository.add({name:"Hopip", height: 4, types:["grass", "flying"]});
 
-console.log(pokemonRepository.getAll());
-
-pokemonRepository.getAll().forEach(function(pokemon){
-    pokemonRepository.addListItem(pokemon); 
-    
-
-
+pokemonRepository.loadList().then(function(){
+    pokemonRepository.getAll().forEach(function(pokemon){
+        pokemonRepository.addListItem(pokemon);
+    });
 });
+
+
 
 
