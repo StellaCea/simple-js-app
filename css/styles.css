@@ -81,6 +81,8 @@ body{
 .modal p {
     margin-bottom: 0;
 }
-.img{
-    size: 300px;
+.modal img{
+    align-items: center;
+    width: 100px;
+    height: 100px;
 }
