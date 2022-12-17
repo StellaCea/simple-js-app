@@ -6,20 +6,37 @@ body{
     color: rgb(185, 8, 8);
 }
 
-.button-class{
-    background-color: rgb(243, 243, 150);
-    border: none;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    color: black;
-    border: 2px solid rgb(185, 8, 8);
+.bg-light{
+    background-color: rgb(236, 77, 77);
 }
+.pokedex{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pokemon-button {
+    font-size: 20px;
+    padding: 12px;
+    width: 100%;
+}
+
+.pokemon-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    width: 90%;
+    max-width: 1280px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 300px);
+}
+
+.list-group-item{
+    background: none;
+    border: none;
+}
+
 .button-class:hover{
     background-color: rgb(221, 221, 90);
 }
@@ -61,7 +78,7 @@ body{
     width: 100%;
     max-width: 600px;
     text-align: left;
-    border: 12px solid rgb(216, 104, 43);
+    border: 8px solid rgb(216, 104, 43);
 }
 
 .modal-close {
@@ -82,7 +99,10 @@ body{
     margin-bottom: 0;
 }
 .modal img{
-    align-items: center;
-    width: 100px;
-    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 200px;
 }
+
