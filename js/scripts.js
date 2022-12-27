@@ -75,7 +75,7 @@ let pokemonRepository = (function () {
         modalTitle.text(pokemon.name);
 
         let pokemonHeight = $('<p>' + "Height: " + pokemon.height + '</p>');
-        let pokemonImg = $('img class="pokemon-img" src="'+ pokemon.imageUrl + '"/>');
+        let pokemonImg = $('<img class="pokemon-img" src="'+ pokemon.imageUrl + '"/>');
         let pokemonTypes = $('<p>' + "Types: " + pokemon.types + '</p>');
 
         /* Add the new modal content
@@ -85,9 +85,9 @@ let pokemonRepository = (function () {
         closeButtonElement.addEventListener("click", hideModal);
         */
 
-        modal.append(pokemonHeight);
-        modal.append(pokemonImg);
-        modal.append(pokemonTypes);
+        modalContainer.append(pokemonHeight);
+        modalContainer.append(pokemonImg);
+        modalContainer.append(pokemonTypes);
         
 
         //Close when clicking outside the modal
@@ -97,8 +97,6 @@ let pokemonRepository = (function () {
                 hideModal();
             }
         });
-
-        modalContainer.classList.add("is-visible");
     }
 
     function hideModal(){
