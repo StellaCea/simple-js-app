@@ -48,6 +48,7 @@ body{
     display: none;
 }
 
+/*
 .modal-container.is-visible {
     position: fixed;
     padding: 20px;
@@ -58,16 +59,17 @@ body{
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
 
-    /* to show it above other content */
+    /to show it above other content 
     z-index: 999;
 
-    /* to allow scrolling if the screen is not high enough*/
+    /to allow scrolling if the screen is not high enough
     overflow: auto;
 
-    /* to center the modal */
+    /to center the modal 
     display: grid;
     text-align: center;
 }
+*/
 
 .modal {
     margin: auto;
