@@ -3,7 +3,6 @@ Pokedex is a small web application with HTML, CSS, and JavaScript that loads dat
 Key Features
 - Load data from an external source (API)
 - View a list of items
-- Search for items to be displayed
 - On user action (e.g., by clicking on a list item), view details for that item
 
 Dependencies
