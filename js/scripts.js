@@ -2,8 +2,6 @@ let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
     let pokemonListElement = $('.pokemon-list'); 
-    let inputField = document.querySelector(".search");
-    let pokemonModal = document.querySelector(".modal-dialog");
 
     function add(pokemon){
         if(
@@ -48,6 +46,7 @@ let pokemonRepository = (function () {
             console.error(e);
         })
     }
+
 
     function loadDetails(item){
         let url = item.detailsUrl;
