@@ -2,6 +2,8 @@ let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
     let pokemonListElement = $('.pokemon-list'); 
+    let inputField = document.querySelector(".search");
+    let pokemonModal = document.querySelector(".modal-dialog");
 
     function add(pokemon){
         if(
@@ -21,7 +23,7 @@ let pokemonRepository = (function () {
     
     function addListItem(pokemon) {
         let listItem = $('<li class="list-group-item"></li>');
-        let button = $('<button class="pokemon-button btn btn-warning" data-target="# pokemon-modal" data-toggle="modal">' + pokemon.name +  '</button>');
+        let button = $('<button class="pokemon-button btn btn-warning" data-target="#pokemon-modal" data-toggle="modal">' + pokemon.name +  '</button>');
         listItem.append(button);
         pokemonListElement.append(listItem);  
         button.on('click', function() {
@@ -53,7 +55,8 @@ let pokemonRepository = (function () {
             return response.json();
         }).then (function(details){
             //add details to the item
-            item.imageUrl = details.sprites.front_default;
+            item.frontImageUrl = details.sprites.front_default;
+            item.backImageUrl = details.sprites.back_default;
             item.height = details.height;
             item.types = details.types.map((type)=>type.type.name).join(",");
         }).catch(function(e){
@@ -75,7 +78,8 @@ let pokemonRepository = (function () {
         modalTitle.text(pokemon.name);
 
         let pokemonHeight = $('<p>' + "Height: " + pokemon.height + '</p>');
-        let pokemonImg = $('<img class="pokemon-img" src="'+ pokemon.imageUrl + '"/>');
+        let pokemonFrontImg = $('<img class="pokemon-img" src="'+ pokemon.frontImageUrl + '"/>');
+        let pokemonBackImg = $('<img class="pokemon-img" src="'+ pokemon.backImageUrl + '"/>');
         let pokemonTypes = $('<p>' + "Types: " + pokemon.types + '</p>');
 
         /* Add the new modal content
@@ -84,10 +88,11 @@ let pokemonRepository = (function () {
         closeButtonElement.innerText = 'Close';
         closeButtonElement.addEventListener("click", hideModal);
         */
-
+        modalContainer.append(pokemonFrontImg);
         modalContainer.append(pokemonHeight);
-        modalContainer.append(pokemonImg);
         modalContainer.append(pokemonTypes);
+        modalContainer.append(pokemonBackImg);
+        
         
 
         //Close when clicking outside the modal

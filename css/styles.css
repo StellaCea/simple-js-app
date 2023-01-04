@@ -1,11 +1,39 @@
-html,
-body{
-    background-color: rgb(241, 241, 122);
-    box-sizing: border-box;
-    font-size: 48px;
-    color: rgb(185, 8, 8);
+:root{
+    --background-color:#F1F17A;
+    --primary-color: #B90808;
+    --button-background: #FFC107;
+    --button-hover: #DDDD5A; 
 }
 
+body{
+    background-color: var(--background-color);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+}
+h1{
+    color: aliceblue;
+}
+
+main{
+    margin-top: 150px;
+}
+.fixed-top{
+    position: fixed;
+    top: 0;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10%;
+}
+nav{
+    background-color: var(--primary-color);
+
+
+}
 .pokedex{
     padding: 15px;
     display: flex;
@@ -14,8 +42,11 @@ body{
 }
 .pokemon-button {
     font-size: 20px;
-    padding: 12px;
+    padding: 32px;
     width: 100%;
+    border: 3px solid;
+    border-color: var(--primary-color);
+    border-radius: 18px;
 }
 
 .pokemon-list {
@@ -35,26 +66,16 @@ body{
 }
 
 .button-class:hover{
-    background-color: rgb(221, 221, 90);
-}
-.container{
-    text-align: center;
-    align-items: center;
-}
-.modal-container {
-    display: none;
+    background-color: var(--button-hover);
 }
 
-.modal {
+.modal-content {
+    background: var(--button-background);
+    border: 4px solid var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px 0 rgb(225, 74, 74);
     margin: auto;
-    display: inline-block;
-    box-sizing: border-box;
-    background: rgb(230, 230, 67);
-    padding: 15px;
-    width: 100%;
-    max-width: 600px;
-    text-align: left;
-    border: 8px solid rgb(216, 104, 43);
+    text-align: center;
 }
 
 .modal-close {
