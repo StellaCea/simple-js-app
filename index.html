@@ -15,9 +15,23 @@
     <nav class="navbar fixed-top">
         <h1 class="navbar-brand">Pokedex</h1>
         <form class="navbar-form form-inline">
-            <input class="form-control search" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control search" type="search" placeholder="Search" aria-label="Search" id="search-input"/>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                Search
+            </button>
         </form>
     </nav>
+
+<!--Spinner-->
+    <div class="d-flex align-items-center loader">
+        <strong class="loading">Loading...</strong>
+        <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+    </div>
+    <div class="container-fluid">
+        <ul class="row" id="poke_doc"></ul>
+    </div>
+
+
     <main class="pokedex"> 
         <ul class="pokemon-list list-group list-group-horizontal row"></ul>
 <!-- Add modal-->

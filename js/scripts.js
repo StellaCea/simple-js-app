@@ -3,6 +3,7 @@ let pokemonRepository = (function () {
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
     let pokemonListElement = $('.pokemon-list'); 
 
+    
     function add(pokemon){
         if(
             typeof pokemon === "object" &&
@@ -18,7 +19,8 @@ let pokemonRepository = (function () {
     function getAll(){
         return pokemonList;
     }
-    
+
+//Create Pokemon Buttons
     function addListItem(pokemon) {
         let listItem = $('<li class="list-group-item"></li>');
         let button = $('<button class="pokemon-button btn btn-warning" data-target="#pokemon-modal" data-toggle="modal">' + pokemon.name +  '</button>');
@@ -29,7 +31,7 @@ let pokemonRepository = (function () {
         });
     }
 
-    //get the complete list of pokemons from the url
+//Get the complete list of pokemons from the url
     function loadList() {
         return fetch (apiUrl).then(function(response){
             return response.json();
@@ -47,7 +49,25 @@ let pokemonRepository = (function () {
         })
     }
 
+//Add Search box filter functionality
+    document.querySelector("#search-input");
+    addEventListener("input", filterList);
 
+    function filterList(){
+        let searchInput = document.querySelector("#search-input");
+        let filter = searchInput.value.toLowerCase();
+        listItem.forEach((item) =>{
+            let search = item.textContent;
+            if (search.toLowerCase().includes(filter.toLowerCase())){
+                item.style.display = "";
+            }else{
+                item.style.display = "none";
+            }
+        });
+    }
+
+
+//Attach details to pokemon buttons
     function loadDetails(item){
         let url = item.detailsUrl;
         return fetch(url).then(function(response){
@@ -81,18 +101,18 @@ let pokemonRepository = (function () {
         let pokemonBackImg = $('<img class="pokemon-img" src="'+ pokemon.backImageUrl + '"/>');
         let pokemonTypes = $('<p>' + "Types: " + pokemon.types + '</p>');
 
-        /* Add the new modal content
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        closeButtonElement.addEventListener("click", hideModal);
-        */
         modalContainer.append(pokemonFrontImg);
         modalContainer.append(pokemonHeight);
         modalContainer.append(pokemonTypes);
         modalContainer.append(pokemonBackImg);
-        
-        
+
+
+//Add loading spinner
+
+        $(document).ready(function(){
+            $(".loading").hide();
+            $(".spinner-border").hide();
+        })
 
         //Close when clicking outside the modal
         modalContainer.on('click', (e)=>{

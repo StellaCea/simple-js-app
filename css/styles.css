@@ -102,4 +102,7 @@ nav{
     width: 200px;
     height: 200px;
 }
-
+.spinner-boarder{
+    color: var(--background-color);
+    margin: 50px;
+}
