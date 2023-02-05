@@ -56,7 +56,7 @@ let pokemonRepository = (function () {
     function filterList(){
         let searchInput = document.querySelector("#search-input");
         let filter = searchInput.value.toLowerCase();
-        listItem.forEach((item) =>{
+        pokemonListElement[0].childNodes.forEach((item) =>{
             let search = item.textContent;
             if (search.toLowerCase().includes(filter.toLowerCase())){
                 item.style.display = "";
