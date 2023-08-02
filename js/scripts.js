@@ -65,7 +65,6 @@ let pokemonRepository = (function () {
         });
     }
 
-
 //Attach details to pokemon buttons
     function loadDetails(item){
         let url = item.detailsUrl;
@@ -133,8 +132,6 @@ let pokemonRepository = (function () {
             hideModal();
         }
     })
-
-
     return{
         add:add,
         getAll:getAll,
